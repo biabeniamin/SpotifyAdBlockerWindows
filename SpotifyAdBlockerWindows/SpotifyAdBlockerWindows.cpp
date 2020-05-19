@@ -7,6 +7,26 @@ DWORD WINAPI SpotifyAdsBlockerProc(__in LPVOID lpParameter)
 {
 	while (1)
 	{
+		try
+		{
+			if (spotify.IsAdsPlaying())
+			{
+				spotify.Mute();
+
+				while (spotify.IsAdsPlaying())
+				{
+					Sleep(500);
+				}
+
+				spotify.Unmute();
+			}
+
+			Sleep(500);
+		}
+		catch (const char* msg)
+		{
+			printf("error %s\n", msg);
+		}
 	}
 
 	return 0;
@@ -26,4 +46,7 @@ int main()
 {
     std::cout << "Starting spotify ad blocker!\n";
 	StartSpotifyAdsBlocker();
+	while (1)
+	{
+	}
 }
