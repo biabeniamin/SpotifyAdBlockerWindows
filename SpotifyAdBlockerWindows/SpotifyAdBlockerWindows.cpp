@@ -32,9 +32,9 @@ DWORD WINAPI SpotifyAdsBlockerProc(__in LPVOID lpParameter)
 	return 0;
 }
 
-void StartSpotifyAdsBlocker()
+HANDLE StartSpotifyAdsBlocker()
 {
-	CreateThread(NULL,
+	return CreateThread(NULL,
 		0,
 		SpotifyAdsBlockerProc,
 		0,
@@ -44,9 +44,10 @@ void StartSpotifyAdsBlocker()
 
 int main()
 {
+	HANDLE spotifyThreadHandler;
+
     std::cout << "Starting spotify ad blocker!\n";
-	StartSpotifyAdsBlocker();
-	while (1)
-	{
-	}
+
+	spotifyThreadHandler = StartSpotifyAdsBlocker();
+	WaitForSingleObject(spotifyThreadHandler, INFINITE);
 }
