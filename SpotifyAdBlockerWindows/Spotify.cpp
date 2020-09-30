@@ -55,7 +55,7 @@ void Spotify::GetAllWindowsFromProcessID(DWORD DWProcessID)
 
 	exceptions.push_back(L"MSCTFIME UI");
 	exceptions.push_back(L"Default IME");
-	exceptions.push_back(L"Default IME");
+	exceptions.push_back(L"GDI+ Window (Spotify.exe)");
 
 	do
 	{
